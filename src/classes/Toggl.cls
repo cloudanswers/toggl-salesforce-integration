@@ -30,6 +30,17 @@ public with sharing class Toggl {
     	);
     }
 
+    public TogglDetailedReportResult getTimeEntries() {
+        String url = 'https://www.toggl.com/reports/api/v2/details?user_agent=toggl_at_ccp.io&workspace_id='+this.workspaceId+'';
+        TogglDetailedReportResult res = (TogglDetailedReportResult)JSON.deserialize(
+            get(url).getBody(), 
+            TogglDetailedReportResult.class
+        );
+        res.baseUrl = url;
+        res.t = this;
+        return res;
+    }
+
     // helpers
 
     private class HttpException extends Exception {}
@@ -82,5 +93,47 @@ public with sharing class Toggl {
         Datetime at;
         Boolean template;
         Integer color;
+    }
+
+    public class TogglDetailedReportResult {
+        String baseUrl = '';
+        Integer total_grand;
+        Integer total_billable;
+        Integer total_count;
+        Integer page = 1;
+        Integer per_page;
+        List<TogglTimeEntry> data;
+        Toggl t;
+        public TogglDetailedReportResult next() {
+            TogglDetailedReportResult res = (TogglDetailedReportResult)JSON.deserialize(
+                t.get(baseUrl + '&page=' + (page + 1)).getBody(), 
+                TogglDetailedReportResult.class
+            );
+            res.page = page + 1;
+            res.baseUrl = baseUrl;
+            res.t = t;
+            return res;
+        }
+    }
+
+    public class TogglTimeEntry {
+        Integer id;
+        Integer pid;
+        Integer tid;
+        Integer uid;
+        String description;
+        Datetime start;
+        // reserved word "end" Datetime end;
+        Datetime updated;
+        Integer dur;
+        String user;
+        Boolean use_stop;
+        String client;
+        String project;
+        String task;
+        Decimal billable;
+        Boolean is_billable;
+        String cur;
+        List<String> tags;
     }
 }
