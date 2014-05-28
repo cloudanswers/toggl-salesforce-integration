@@ -9,9 +9,23 @@ public with sharing class Toggl {
         this.workspaceId = workspaceId;
     }
 
+    public List<TogglClient> getClients() {
+    	return (List<TogglClient>)JSON.deserialize(
+    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/clients').getBody(), 
+    		List<TogglClient>.class
+    	);
+    }
+
+    public List<TogglUser> getUsers() {
+    	return (List<TogglUser>)JSON.deserialize(
+    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/users').getBody(), 
+    		List<TogglUser>.class
+    	);
+    }
+
     public List<TogglProject> getProjects() {
     	return (List<TogglProject>)JSON.deserialize(
-    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/projects?').getBody(), 
+    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/projects').getBody(), 
     		List<TogglProject>.class
     	);
     }
@@ -37,6 +51,25 @@ public with sharing class Toggl {
     }
 
     // deserialization classes
+
+    public class TogglClient {
+    	Integer id;
+        Integer wid;
+        String name;
+        Datetime at;
+        String notes;
+        Integer hrate;
+        String cur;
+    }
+
+    public class TogglUser {
+    	Integer id;
+        String email;
+        String fullname;
+        String image_url;
+        Datetime at;
+        Datetime created_at;
+    }
 
     public class TogglProject {
         Integer id;
