@@ -64,46 +64,64 @@ public with sharing class Toggl {
     // deserialization classes
 
     public class TogglClient {
-    	Integer id;
-        Integer wid;
-        String name;
-        Datetime at;
-        String notes;
-        Integer hrate;
-        String cur;
+    	public Integer id;
+        public Integer wid;
+        public String name;
+        public Datetime at;
+        public String notes;
+        public Integer hrate;
+        public String cur;
+        public Account toSObject() {
+            return new Account(
+                Toggl_ID__c = id,
+                Name = name
+            );
+        }
     }
 
     public class TogglUser {
-    	Integer id;
-        String email;
-        String fullname;
-        String image_url;
-        Datetime at;
-        Datetime created_at;
+    	public Integer id;
+        public String email;
+        public String fullname;
+        public String image_url;
+        public Datetime at;
+        public Datetime created_at;
+        public Toggl_User__c toSObject() {
+            return new Toggl_User__c(
+                Toggl_ID__c = id,
+                Name = fullname
+            );
+        }
     }
 
     public class TogglProject {
-        Integer id;
-        Integer wid;
-        Integer cid;
-        String name;
-        Boolean billable;
-        Boolean is_private;
-        Boolean active;
-        Datetime at;
-        Boolean template;
-        Integer color;
+        public Integer id;
+        public Integer wid;
+        public Integer cid;
+        public String name;
+        public Boolean billable;
+        public Boolean is_private;
+        public Boolean active;
+        public Datetime at;
+        public Boolean template;
+        public Integer color;
+        public Toggl_Project__c toSObject() {
+            return new Toggl_Project__c(
+                Toggl_ID__c = id,
+                Name = name
+            );
+        }
     }
 
     public class TogglDetailedReportResult {
-        String baseUrl = '';
-        Integer total_grand;
-        Integer total_billable;
-        Integer total_count;
-        Integer page = 1;
-        Integer per_page;
-        List<TogglTimeEntry> data;
-        Toggl t;
+        public String baseUrl = '';
+        public Integer total_grand;
+        public Integer total_billable;
+        public Integer total_count;
+        public Integer page = 1;
+        public Integer per_page;
+        public List<TogglTimeEntry> data;
+        public Toggl t;
         public TogglDetailedReportResult next() {
             TogglDetailedReportResult res = (TogglDetailedReportResult)JSON.deserialize(
                 t.get(baseUrl + '&page=' + (page + 1)).getBody(), 
@@ -117,23 +135,29 @@ public with sharing class Toggl {
     }
 
     public class TogglTimeEntry {
-        Integer id;
-        Integer pid;
-        Integer tid;
-        Integer uid;
-        String description;
-        Datetime start;
-        // reserved word "end" Datetime end;
-        Datetime updated;
-        Integer dur;
-        String user;
-        Boolean use_stop;
-        String client;
-        String project;
-        String task;
-        Decimal billable;
-        Boolean is_billable;
-        String cur;
-        List<String> tags;
+        public Integer id;
+        public Integer pid;
+        public Integer tid;
+        public Integer uid;
+        public String description;
+        public Datetime start;
+        // reserved word "end" public Datetime end;
+        public Datetime updated;
+        public Integer dur;
+        public String user;
+        public Boolean use_stop;
+        public String client;
+        public String project;
+        public String task;
+        public Decimal billable;
+        public Boolean is_billable;
+        public String cur;
+        public List<String> tags;
+        public Toggl_Time_Entry__c toSObject() {
+            return new Toggl_Time_Entry__c(
+                Toggl_ID__c = id,
+                Name = description
+            );
+        }
     }
 }
