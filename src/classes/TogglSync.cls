@@ -14,7 +14,8 @@ global class TogglSync implements Database.Batchable<String>, Database.Stateful 
 	@TestVisible
 	private Boolean didScheduleAdditionalBatch;
 	
-	global TogglSync() {
+	global TogglSync(Toggl toggl) {
+		this.toggl = toggl;
 		for(Integer i=0; i<20; i++) {
 			actions.add(actions[actions.size()-1]);
 		}
@@ -32,7 +33,7 @@ global class TogglSync implements Database.Batchable<String>, Database.Stateful 
 	
 	global void finish(Database.BatchableContext BC) {
 		if (!timeEntriesFinished) {
-			TogglSync b = new TogglSync();
+			TogglSync b = new TogglSync(toggl);
 			b.actions = actions.clone();
 			// remove the sync actions not related to the time entries
 			// because only time_entries can be continued
@@ -41,7 +42,6 @@ global class TogglSync implements Database.Batchable<String>, Database.Stateful 
 			}
 			// double the number of time entries that we want to process for next time
 			b.actions.addAll(b.actions);
-			b.toggl = toggl;
 			b.currentTimeEntryReportResult = currentTimeEntryReportResult;
 
 			if (Test.isRunningTest()) {

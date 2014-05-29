@@ -1,4 +1,4 @@
-public with sharing class Toggl {
+global with sharing class Toggl {
     
     private Http h;
     private String apiKey;
