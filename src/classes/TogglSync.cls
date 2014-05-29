@@ -1,4 +1,4 @@
-global class TogglSync implements Database.Batchable<String>, Database.Stateful {
+global class TogglSync implements Database.Batchable<String>, Database.Stateful, Database.AllowsCallouts {
 	
 	public List<String> actions = new List<String>{
 		'users',
@@ -43,6 +43,11 @@ global class TogglSync implements Database.Batchable<String>, Database.Stateful 
 			// double the number of time entries that we want to process for next time
 			b.actions.addAll(b.actions);
 			b.currentTimeEntryReportResult = currentTimeEntryReportResult;
+
+			// stop out of control batches
+			if (actions.size() > 100) {
+				return;
+			}
 
 			if (Test.isRunningTest()) {
 				didScheduleAdditionalBatch = true;
