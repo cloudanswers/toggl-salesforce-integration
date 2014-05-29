@@ -28,12 +28,12 @@ global class TogglSync implements Database.Batchable<String>, Database.Stateful,
         dmo = new Database.DMLOptions();
         dmo.allowFieldTruncation = true;
 		this.toggl = toggl;
-		while (actions.size() < 10) {
-			actions.add(actions[actions.size()-1]);
-		}
 	}
 	
 	global List<String> start(Database.BatchableContext BC) {
+        while (actions.size() < 10) {
+            actions.add(actions[actions.size()-1]);
+        }
 		return actions;
 	}
 
