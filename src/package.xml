@@ -3,20 +3,28 @@
     <fullName>toggl-salesforce-integration</fullName>
     <types>
         <members>Toggl</members>
+        <members>TogglSetup</members>
         <members>TogglSync</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>TogglSetup</members>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>Account.Toggl_ID__c</members>
         <members>Toggl_Project__c.Toggl_ID__c</members>
         <members>Toggl_Time_Entry__c.Toggl_ID__c</members>
         <members>Toggl_User__c.Toggl_ID__c</members>
+        <members>Toggl__c.API_Token__c</members>
+        <members>Toggl__c.Workspace_ID__c</members>
         <name>CustomField</name>
     </types>
     <types>
         <members>Toggl_Project__c</members>
         <members>Toggl_Time_Entry__c</members>
         <members>Toggl_User__c</members>
+        <members>Toggl__c</members>
         <name>CustomObject</name>
     </types>
     <types>

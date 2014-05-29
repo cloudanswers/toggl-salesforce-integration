@@ -1,8 +1,8 @@
 <apex:page showHeader="true" sidebar="true" controller="TogglSetup">
-	<apex:form>
+	<apex:form >
 	<apex:sectionHeader title="Toggl Salesforce Sync" subtitle="Setup"/>
-	<apex:pageBlock>
-		<apex:pageBlockButtons>
+	<apex:pageBlock >
+		<apex:pageBlockButtons >
 			<apex:commandButton value="Run Sync Now" action="{!sync}"/>
 			<apex:commandButton value="Update Credentials" action="{!save}"/>
 		</apex:pageBlockButtons>
