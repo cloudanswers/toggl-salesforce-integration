@@ -62,36 +62,33 @@ global class TogglSync implements Database.Batchable<String>, Database.Stateful,
 	// helpers
 
 	private void processScope(String scope) {
+		List<Toggl_User__c> users = new List<Toggl_User__c>();
+		List<Account> accounts = new List<Account>();
+		List<Toggl_Project__c> projects = new List<Toggl_Project__c>();
+		List<Toggl_Time_Entry__c> timeEntries = new List<Toggl_Time_Entry__c>();
 		if (scope == 'users') {
-			List<Toggl_User__c> users = new List<Toggl_User__c>();
 			for (Toggl.TogglUser tobj : toggl.getUsers()) {
 				users.add(tobj.toSObject());
 			}
-			// FIXME handle results
-			Database.upsert(users, Toggl_User__c.Toggl_ID__c, false);
 		} else if (scope == 'clients') {
-			List<Account> accounts = new List<Account>();
 			for (Toggl.TogglClient tobj : toggl.getClients()) {
 				accounts.add(tobj.toSObject());
 			}
-			// FIXME handle results
-			Database.upsert(accounts, Account.Toggl_ID__c, false);
 		} else if (scope == 'projects') {
-			List<Toggl_Project__c> projects = new List<Toggl_Project__c>();
 			for (Toggl.TogglProject tobj : toggl.getProjects()) {
 				projects.add(tobj.toSObject());
 			}
-			// FIXME handle results
-			Database.upsert(projects, Toggl_Project__c.Toggl_ID__c, false);
 		} else if (scope == 'time_entries') {
-			List<Toggl_Time_Entry__c> timeEntries = new List<Toggl_Time_Entry__c>();
 			currentTimeEntryReportResult = toggl.getTimeEntries();
 			for (Toggl.TogglTimeEntry tobj : currentTimeEntryReportResult.data) {
 				timeEntries.add(tobj.toSObject());
 			}
 			timeEntriesFinished = timeEntries.isEmpty();
-			// FIXME handle results
-			Database.upsert(timeEntries, Toggl_Time_Entry__c.Toggl_ID__c, false);
 		}
+		// TODO handle results
+		Database.upsert(users, Toggl_User__c.Toggl_ID__c, false);
+		Database.upsert(accounts, Account.Toggl_ID__c, false);
+		Database.upsert(projects, Toggl_Project__c.Toggl_ID__c, false);
+		Database.upsert(timeEntries, Toggl_Time_Entry__c.Toggl_ID__c, false);
 	}
 }
