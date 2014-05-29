@@ -36,6 +36,7 @@ global with sharing class Toggl {
             TogglDetailedReportResult.class
         );
         res.baseUrl = url;
+        res.page = 1;
         res.t = this;
         return res;
     }
