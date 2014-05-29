@@ -125,9 +125,9 @@ global class TogglSync implements Database.Batchable<String>, Database.Stateful,
 	}
 
     private void processUpsertResults(List<SObject> sobjs, List<Database.UpsertResult> upsertResults) {
-        for (Database.UpsertResult r : upsertResults) {
-            if (!r.isSuccess()) {
-                errors.add('' + r.getErrors());
+        for (Integer i=0; i<upsertResults.size(); i++) {
+            if (!upsertResults[i].isSuccess()) {
+                errors.add('' + sobjs[i] + ' => ' + upsertResults[i].getErrors());
             }
         }
     }
