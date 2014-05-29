@@ -1,6 +1,5 @@
 global with sharing class Toggl {
     
-    private Http h;
     private String apiKey;
     private Integer workspaceId;
 
@@ -51,9 +50,7 @@ global with sharing class Toggl {
         req.setHeader('Connection', 'keep-alive');
         req.setHeader('Authorization', 'Basic ' + EncodingUtil.base64Encode(Blob.valueOf(this.apiKey + ':api_token')));
         req.setEndpoint(url);
-        if (h == null) {
-            h = new Http();
-        }
+        Http h = new Http();
         HttpResponse res = h.send(req);
         if (res.getStatusCode() != 200) {
             throw new HttpException('Invalid status code ' + res.getStatusCode() + ' for ' + url);
