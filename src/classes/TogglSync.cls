@@ -114,7 +114,11 @@ global class TogglSync implements Database.Batchable<String>, Database.Stateful,
                     projects[projects.size()-1].setOptions(dmo);
     			}
     		} else if (s == 'time_entries') {
+                if (currentTimeEntryReportResult == null) {
     			currentTimeEntryReportResult = toggl.getTimeEntries();
+                } else {
+                    currentTimeEntryReportResult = currentTimeEntryReportResult.next();
+                }
     			for (Toggl.TogglTimeEntry tobj : currentTimeEntryReportResult.data) {
     				timeEntries.add(tobj.toSObject());
                     timeEntries[timeEntries.size()-1].setOptions(dmo);
