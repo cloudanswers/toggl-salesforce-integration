@@ -5,6 +5,7 @@
         <members>Toggl</members>
         <members>TogglSetup</members>
         <members>TogglSync</members>
+        <members>TogglSyncScheduler</members>
         <name>ApexClass</name>
     </types>
     <types>
