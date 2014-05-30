@@ -51,6 +51,37 @@
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
     <fields>
+        <fullName>Duration__c</fullName>
+        <externalId>false</externalId>
+        <label>Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Full_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Full Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Timer_Start__c</fullName>
+        <externalId>false</externalId>
+        <label>Timer Start</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Toggl_ID__c</fullName>
         <externalId>true</externalId>
         <label>Toggl ID</label>
@@ -76,6 +107,15 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Toggl_Updated__c</fullName>
+        <externalId>false</externalId>
+        <label>Toggl Updated</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Toggl_User__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -95,6 +135,9 @@
         <columns>NAME</columns>
         <columns>Toggl_Project__c</columns>
         <columns>Toggl_User__c</columns>
+        <columns>Timer_Start__c</columns>
+        <columns>Duration__c</columns>
+        <columns>Toggl_Updated__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>

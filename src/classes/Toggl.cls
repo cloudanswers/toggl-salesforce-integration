@@ -157,7 +157,11 @@ global with sharing class Toggl {
                 Toggl_ID__c = id,
                 Name = description,
                 Toggl_User__r = new Toggl_User__c(Toggl_ID__c=uid),
-                Toggl_Project__r = new Toggl_Project__c(Toggl_ID__c=pid)
+                Toggl_Project__r = new Toggl_Project__c(Toggl_ID__c=pid),
+                Timer_Start__c = start,
+                Full_Description__c = description,
+                Toggl_Updated__c = updated,
+                Duration__c = dur/1000
             );
         }
     }
