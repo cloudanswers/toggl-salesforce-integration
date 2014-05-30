@@ -155,7 +155,8 @@ global with sharing class Toggl {
         public Toggl_Time_Entry__c toSObject() {
             return new Toggl_Time_Entry__c(
                 Toggl_ID__c = id,
-                Name = description
+                Name = description,
+                Toggl_User__r = new Toggl_User__c(Toggl_ID__c=uid)
             );
         }
     }

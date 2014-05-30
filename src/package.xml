@@ -16,6 +16,7 @@
         <members>Toggl_Project__c.Account__c</members>
         <members>Toggl_Project__c.Toggl_ID__c</members>
         <members>Toggl_Time_Entry__c.Toggl_ID__c</members>
+        <members>Toggl_Time_Entry__c.Toggl_User__c</members>
         <members>Toggl_User__c.Toggl_ID__c</members>
         <members>Toggl__c.API_Token__c</members>
         <members>Toggl__c.Workspace_ID__c</members>
