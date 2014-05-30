@@ -51,6 +51,19 @@
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
     <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Toggl Projects</relationshipLabel>
+        <relationshipName>Toggl_Projects</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Toggl_ID__c</fullName>
         <externalId>true</externalId>
         <label>Toggl ID</label>
@@ -65,6 +78,11 @@
     <label>Toggl Project</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Toggl_ID__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

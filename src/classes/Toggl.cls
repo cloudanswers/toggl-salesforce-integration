@@ -106,7 +106,8 @@ global with sharing class Toggl {
         public Toggl_Project__c toSObject() {
             return new Toggl_Project__c(
                 Toggl_ID__c = id,
-                Name = name
+                Name = name,
+                Account__r = new Account(Toggl_ID__c=cid)
             );
         }
     }
