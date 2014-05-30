@@ -18,6 +18,10 @@
                 <behavior>Edit</behavior>
                 <field>Toggl_User__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Toggl_Project__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

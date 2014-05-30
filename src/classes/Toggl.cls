@@ -156,7 +156,8 @@ global with sharing class Toggl {
             return new Toggl_Time_Entry__c(
                 Toggl_ID__c = id,
                 Name = description,
-                Toggl_User__r = new Toggl_User__c(Toggl_ID__c=uid)
+                Toggl_User__r = new Toggl_User__c(Toggl_ID__c=uid),
+                Toggl_Project__r = new Toggl_Project__c(Toggl_ID__c=pid)
             );
         }
     }
