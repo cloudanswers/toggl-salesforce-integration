@@ -10,21 +10,21 @@ global with sharing class Toggl {
 
     public List<TogglClient> getClients() {
     	return (List<TogglClient>)JSON.deserialize(
-    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/clients').getBody(), 
+    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/clients'), 
     		List<TogglClient>.class
     	);
     }
 
     public List<TogglUser> getUsers() {
     	return (List<TogglUser>)JSON.deserialize(
-    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/users').getBody(), 
+    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/users'), 
     		List<TogglUser>.class
     	);
     }
 
     public List<TogglProject> getProjects() {
     	return (List<TogglProject>)JSON.deserialize(
-    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/projects').getBody(), 
+    		get('https://www.toggl.com/api/v8/workspaces/'+this.workspaceId+'/projects'), 
     		List<TogglProject>.class
     	);
     }
@@ -32,7 +32,7 @@ global with sharing class Toggl {
     public TogglDetailedReportResult getTimeEntries() {
         String url = 'https://www.toggl.com/reports/api/v2/details?user_agent=toggl_at_ccp.io&workspace_id='+this.workspaceId+'';
         TogglDetailedReportResult res = (TogglDetailedReportResult)JSON.deserialize(
-            get(url).getBody(), 
+            get(url), 
             TogglDetailedReportResult.class
         );
         res.baseUrl = url;
@@ -45,18 +45,24 @@ global with sharing class Toggl {
 
     private class HttpException extends Exception {}
 
-    private HttpResponse get(String url) {
+    @TestVisible
+    private String getOverride;
+
+    private String get(String url) {
         HttpRequest req = new HttpRequest();
         req.setMethod('GET');
         req.setHeader('Connection', 'keep-alive');
         req.setHeader('Authorization', 'Basic ' + EncodingUtil.base64Encode(Blob.valueOf(this.apiKey + ':api_token')));
         req.setEndpoint(url);
         Http h = new Http();
+        if (getOverride != null) {
+            return getOverride;
+        }
         HttpResponse res = h.send(req);
         if (res.getStatusCode() != 200) {
             throw new HttpException('Invalid status code ' + res.getStatusCode() + ' for ' + url);
         }
-        return res;
+        return res.getBody();
     }
 
     // deserialization classes
@@ -123,7 +129,7 @@ global with sharing class Toggl {
         public Toggl t;
         public TogglDetailedReportResult next() {
             TogglDetailedReportResult res = (TogglDetailedReportResult)JSON.deserialize(
-                t.get(baseUrl + '&page=' + (page + 1)).getBody(), 
+                t.get(baseUrl + '&page=' + (page + 1)), 
                 TogglDetailedReportResult.class
             );
             res.page = page + 1;
@@ -161,7 +167,7 @@ global with sharing class Toggl {
                 Timer_Start__c = start,
                 Full_Description__c = description,
                 Toggl_Updated__c = updated,
-                Duration__c = dur/1000
+                Duration__c = dur == null ? null : dur/1000
             );
         }
     }
