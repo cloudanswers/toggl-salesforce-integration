@@ -4,8 +4,10 @@
     <types>
         <members>Toggl</members>
         <members>TogglSetup</members>
+        <members>TogglSetupTests</members>
         <members>TogglSync</members>
         <members>TogglSyncScheduler</members>
+        <members>TogglSyncTests</members>
         <members>TogglTests</members>
         <name>ApexClass</name>
     </types>
