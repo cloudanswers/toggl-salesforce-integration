@@ -167,7 +167,8 @@ global with sharing class Toggl {
                 Timer_Start__c = start,
                 Full_Description__c = description,
                 Toggl_Updated__c = updated,
-                Duration__c = dur == null ? null : dur/1000
+                // duration comes through as microseconds but business people need hours
+                Duration__c = dur == null ? null : dur/1000/60/60
             );
         }
     }
