@@ -16,6 +16,10 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>Toggl</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
         <members>Account.Toggl_ID__c</members>
         <members>Toggl_Project__c.Account__c</members>
         <members>Toggl_Project__c.Toggl_ID__c</members>
@@ -37,6 +41,13 @@
         <members>Toggl_User__c</members>
         <members>Toggl__c</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Toggl_Project__c</members>
+        <members>Toggl_Setup</members>
+        <members>Toggl_Time_Entry__c</members>
+        <members>Toggl_User__c</members>
+        <name>CustomTab</name>
     </types>
     <types>
         <members>Toggl_Project__c-Toggl Project Layout</members>
