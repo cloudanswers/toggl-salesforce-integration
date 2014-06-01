@@ -62,6 +62,10 @@
         <name>ListView</name>
     </types>
     <types>
+        <members>Toggl_Data_Visibility</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
         <members>Toggl</members>
         <name>RemoteSiteSetting</name>
     </types>
