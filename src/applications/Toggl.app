@@ -6,4 +6,6 @@
     <tab>Toggl_Time_Entry__c</tab>
     <tab>Toggl_User__c</tab>
     <tab>Toggl_Project__c</tab>
+    <tab>standard-report</tab>
+    <tab>standard-Dashboard</tab>
 </CustomApplication>
