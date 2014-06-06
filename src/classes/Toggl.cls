@@ -148,7 +148,7 @@ global with sharing class Toggl {
         public Datetime start;
         // reserved word "end" public Datetime end;
         public Datetime updated;
-        public Integer dur;
+        public Decimal dur;
         public String user;
         public Boolean use_stop;
         public String client;
@@ -168,7 +168,7 @@ global with sharing class Toggl {
                 Full_Description__c = description,
                 Toggl_Updated__c = updated,
                 // duration comes through as microseconds but business people need hours
-                Duration__c = dur == null ? null : dur/1000/60/60
+                Duration__c = dur == null ? null : dur/1000.0/60.0/60.0
             );
         }
     }
